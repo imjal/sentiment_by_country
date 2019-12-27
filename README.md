@@ -6,6 +6,8 @@ on the safey of a country, particularly when deciding where to visit on your nex
 
 
 ## To-Dos
+- [x] Fix Faulty states by merging based on country code
 - [ ] Incorporate safety and peace scores to appear when hovered over
 - [ ] Create a website holding the map that explains the purpose
 - [ ] Write own webscraper to convert app to real-time
+- [ ] Use a pretrained deep method for sentiments
