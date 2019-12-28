@@ -52,7 +52,7 @@ def index():
         return peace_colormap(feature['properties']['gpi_score'])
 
     def align(gpi_score, sentiment):
-        return (gpi_score - sentiment) ** 2
+        return (gpi_score - sentiment)**2
 
     def alignment_peace_sentiment(feature):
         if feature['properties']['iso_a3'] is None:
@@ -78,52 +78,59 @@ def index():
             aliases=['Country', 'Global Peace Index Score', 'Global Peace Index Rank'],
             localize=True,
             style=('background-color: grey; color: white; font-family: courier new; font-size: 24px; padding: 10px;')
-        )
+        ), 
+        show=True,
+        name = "Similarity of Global Peace Index"
     ).add_to(m)
     align_colormap.caption = 'Alignment of Sentiment and Peace Index'
     align_colormap.add_to(m)
 
-    # folium.GeoJson(
-    #     data=geo_str,
-    #     style_function=lambda feature: {
-    #         'fillColor': peace_color_scale_fun(feature),
-    #         'color': 'black',
-    #         'weight': 1,
-    #         'dashArray': '5, 5',
-    #         'fillOpacity': 0.9,
-    #     },
-    #     highlight_function=highlight_function,
-    #     tooltip=folium.GeoJsonTooltip(
-    #         fields=['name','gpi_score', 'gpi_rank'],
-    #         aliases=['Country', 'Global Peace Index Score', 'Global Peace Index Rank'],
-    #         localize=True,
-    #         style=('background-color: grey; color: white; font-family: courier new; font-size: 24px; padding: 10px;')
-    #     ),
-    #     overlay=True
-    # ).add_to(m)
-    # peace_colormap.caption = 'Global Peace Index'
-    # peace_colormap.add_to(m)
+    folium.GeoJson(
+        data=geo_str,
+        style_function=lambda feature: {
+            'fillColor': peace_color_scale_fun(feature),
+            'color': 'black',
+            'weight': 1,
+            'dashArray': '5, 5',
+            'fillOpacity': 0.9,
+        },
+        highlight_function=highlight_function,
+        tooltip=folium.GeoJsonTooltip(
+            fields=['name','gpi_score', 'gpi_rank'],
+            aliases=['Country', 'Global Peace Index Score', 'Global Peace Index Rank'],
+            localize=True,
+            style=('background-color: grey; color: white; font-family: courier new; font-size: 24px; padding: 10px;')
+        ),
+        overlay=True,
+        show=False,
+        name = "Global Peace Index"
+    ).add_to(m)
+    peace_colormap.caption = 'Global Peace Index'
+    peace_colormap.add_to(m)
     
-    # folium.GeoJson(
-    #     data=geo_str,
-    #     style_function=lambda feature: {
-    #         'fillColor': color_scale_fun(feature),
-    #         'color': 'black',
-    #         'weight': 1,
-    #         'dashArray': '5, 5',
-    #         'fillOpacity': 0.9,
-    #     },
-    #     highlight_function=highlight_function,
-    #     tooltip=folium.GeoJsonTooltip(
-    #         fields=['name','gpi_score', 'gpi_rank'],
-    #         aliases=['Country', 'Global Peace Index Score', 'Global Peace Index Rank'],
-    #         localize=True,
-    #         style=('background-color: grey; color: white; font-family: courier new; font-size: 24px; padding: 10px;')
-    #     )
-    # ).add_to(m)
-    # folium.LayerControl().add_to(m)
-    # colormap.caption = 'Sentiment Color Scale'
-    # colormap.add_to(m)
+    folium.GeoJson(
+        data=geo_str,
+        style_function=lambda feature: {
+            'fillColor': color_scale_fun(feature),
+            'color': 'black',
+            'weight': 1,
+            'dashArray': '5, 5',
+            'fillOpacity': 0.9,
+        },
+        highlight_function=highlight_function,
+        tooltip=folium.GeoJsonTooltip(
+            fields=['name','gpi_score', 'gpi_rank'],
+            aliases=['Country', 'Global Peace Index Score', 'Global Peace Index Rank'],
+            localize=True,
+            style=('background-color: grey; color: white; font-family: courier new; font-size: 24px; padding: 10px;')
+        ), 
+        overlay=True,
+        show=False,
+        name = "News Sentiment"
+    ).add_to(m)
+    folium.LayerControl().add_to(m)
+    colormap.caption = 'Sentiment Color Scale'
+    colormap.add_to(m)
 
     m.save('templates/map.html')
 
