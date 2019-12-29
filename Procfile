@@ -1,1 +1,1 @@
-web: gunicorn app:map_viz
+web: gunicorn app:wsgi
